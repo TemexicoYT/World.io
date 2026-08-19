@@ -1,1 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>World.io</title>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            margin: 0;
+        }
+        canvas {
+            background-color: #222;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
 
+    <script>
+        // 1. THIS ADDS THE PICTURE INSIDE THE CODE
+        const myPicture = new Image();
+        myPicture.src = 'IMG_4077.jpeg'; 
+        // document.body.appendChild(myPicture); // Uncomment if you want to show it
+
+        // 2. THIS ADDS THE GAME CANVAS
+        const gameCanvas = document.createElement('canvas');
+        gameCanvas.id = 'gameCanvas';
+        gameCanvas.width = 800;
+        gameCanvas.height = 600;
+        document.body.appendChild(gameCanvas);
+    </script>
+
+</body>
+</html>
