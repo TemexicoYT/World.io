@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>World.io</title>
+    <!-- Sets your custom app icon for iPad/iPhone -->
+    <link rel="apple-touch-icon" href="IMG_4077.jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 10px;
+        }
+        img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid white;
+            margin-bottom: 15px;
+        }
+        canvas {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 1.85 / 1;
+            background-color: #222;
+            border: 2px solid white;
+            display: block;
+            margin: 10px auto;
+        }
+        .play-btn {
+            background-color: #ffffff;
+            color: #000000;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>World.io</h1>
+    <p>Loading your game world...</p>
+
+    <!-- 1. YOUR PICTURE -->
+    <img src="IMG_4077.jpeg" alt="World.io Image">
+
+    <br>
+
+    <!-- 2. CUSTOM PLAY BUTTON FOR AQUA HARP -->
+    <audio id="bgMusic" loop>
+        <source src="aquaharp.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <button class="play-btn" onclick="document.getElementById('bgMusic').play()">▶ Play Music</button>
+
+    <script>
+        // 3. THE GAME CANVAS (Internal resolution set to 1.85:1 ratio)
+        const gameCanvas = document.createElement('canvas');
+        gameCanvas.id = 'gameCanvas';
+        gameCanvas.width = 800;
+        gameCanvas.height = 432;
+        document.body.appendChild(gameCanvas);
+    </script>
+
+</body>
+</html>
