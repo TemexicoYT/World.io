@@ -2,11 +2,17 @@
 Releasing Dec 26, 2026
 # 🎮 world.io
 
-Here are the direct links to view the game media and play the game!
+Here is the JavaScript code used to add the pictures and videos into the game:
 
-## 🖼️ Media Preview
-* **Game Screenshot:** [Click here to view picture]https://github.com/TemexicoYT/World.io/blob/main/IMG_4077.jpeg
-* **Game Trailer:** [Click here to watch video](https://githubusercontent.com)
+```javascript
+// 1. THIS ADDS THE PICTURE INSIDE THE CODE
+const myPicture = new Image();
+myPicture.src = 'IMG_4077.jpeg'; 
+document.body.appendChild(myPicture);
 
-## 🕹️ Play the Game
-* **Launch Game:** [Click here to open the game](https://github.io)
+// 2. THIS ADDS THE VIDEO INSIDE THE CODE
+const myVideo = document.createElement('video');
+myVideo.src = 'ScreenRecording_08-17-2026 13-43-19_1.mov'; 
+myVideo.controls = true;
+document.body.appendChild(myVideo);
+```
