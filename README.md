@@ -5,7 +5,7 @@ Releasing Dec 26, 2026
 Here are the direct links to view the game media and play the game!
 
 ## 🖼️ Media Preview
-* **Game Screenshot:** [Click here to view picture](https://githubusercontent.com)
+* **Game Screenshot:** [Click here to view picture]https://github.com/TemexicoYT/World.io/blob/main/IMG_4077.jpeg
 * **Game Trailer:** [Click here to watch video](https://githubusercontent.com)
 
 ## 🕹️ Play the Game
