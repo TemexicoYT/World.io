@@ -13,6 +13,63 @@
             background-color: #222;
             display: block;
             margin: 20px auto;<!DOCTYPE html>
+            <!DOCTYPE html>
+<html>
+<head>
+    <title>World.io</title>
+    <!-- Sets your custom app icon for iPad/iPhone -->
+    <link rel="apple-touch-icon" href="IMG_4077.jpeg">
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        img {
+            max-width: 60%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid white;
+            margin-bottom: 20px;
+        }
+        canvas {
+            background-color: #222;
+            border: 2px solid white;
+            display: block;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>World.io</h1>
+    <p>Loading your game world...</p>
+
+    <!-- 1. YOUR PICTURE -->
+    <img src="IMG_4077.jpeg" alt="World.io Image">
+
+    <br>
+
+    <!-- 2. AQUA HARP MUSIC -->
+    <audio controls autoplay loop>
+        <source src="aquaharp.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        // 3. THE GAME CANVAS (1.85:1 Widescreen Ratio: 800x432)
+        const gameCanvas = document.createElement('canvas');
+        gameCanvas.id = 'gameCanvas';
+        gameCanvas.width = 800;
+        gameCanvas.height = 432;
+        document.body.appendChild(gameCanvas);
+    </script>
+
+</body>
+</html>
 <html>
 <head>
     <title>World.io</title>
