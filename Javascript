@@ -1,0 +1,10 @@
+// 1. Put your picture name right here inside the quotes:
+const myPicture = new Image();
+myPicture.src = 'IMG_4077.jpeg'; 
+document.body.appendChild(myPicture);
+
+// 2. Put your video name right here inside the quotes:
+const myVideo = document.createElement('video');
+myVideo.src = 'ScreenRecording_08-17-2026 13-43-19_1.mov'; 
+myVideo.controls = true;
+document.body.appendChild(myVideo);
