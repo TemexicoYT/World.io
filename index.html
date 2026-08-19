@@ -84,10 +84,30 @@
                 });
             }
         }
+<script>
+    const gameCanvas = document.createElement('canvas');
+    gameCanvas.id = 'gameCanvas';
+    gameCanvas.width = 800;
+    gameCanvas.height = 432;
+    document.body.appendChild(gameCanvas);
 
-        window.addEventListener('click', startAudio);
-        window.addEventListener('touchstart', startAudio);
-    </script>
+    let musicStarted = false;
 
-</body>
-</html>
+    function startAudio() {
+        if (musicStarted) return;
+        
+        const music = document.getElementById('bgMusic');
+        
+        music.play().then(() => {
+            musicStarted = true;
+            console.log("Music started successfully!");
+            document.getElementById('overlay').style.display = 'none';
+        }).catch(err => {
+            console.log("Audio play blocked or failed:", err);
+        });
+    }
+
+    // Listen for clicks on the document, body, or canvas explicitly
+    document.addEventListener('click', startAudio, { once: true });
+    document.addEventListener('touchstart', startAudio, { once: true });
+</script>
