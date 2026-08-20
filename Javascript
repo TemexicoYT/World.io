@@ -1,10 +1,37 @@
-// 1. Put your picture name right here inside the quotes:
-const myPicture = new Image('IMG_4077.jpeg');
-myPicture.src = 'IMG_4077.jpeg'; 
-document.body.appendChild(myPicture);
+let gameStarted = false;
 
-// 2. Put your video name right here inside the quotes:
-const myVideo = document.createElement('ScreenRecording_08-17-2026 13-43-19_1.mov');
-myVideo.src = 'ScreenRecording_08-17-2026 13-43-19_1.mov'; 
-myVideo.controls = true;
-document.body.appendChild(myVideo);
+function startGameAndMedia(e) {
+    if (gameStarted) return;
+    gameStarted = true;
+
+    // 1. Hide the tap prompt overlay
+    const promptOverlay = document.getElementById('overlay');
+    if (promptOverlay) promptOverlay.style.display = 'none';
+
+    // 2. Play Background Music
+    const music = document.getElementById('bgMusic');
+    music.play().catch(err => {
+        console.log("Audio play blocked or failed:", err);
+    });
+
+    // 3. Show and Play Video Recording
+    const videoOverlay = document.getElementById('videoOverlay');
+    const gameVideo = document.getElementById('gameVideo');
+    
+    videoOverlay.style.display = 'flex';
+    gameVideo.play().catch(err => {
+        console.log("Video autoplay prevented:", err);
+    });
+
+    // 4. When the video finishes, hide it and start your game loop
+    gameVideo.addEventListener('ended', () => {
+        videoOverlay.style.display = 'none';
+        
+        // 👉 ADD YOUR GAME CODE / GAME LOOP START HERE:
+        // initGame(); 
+    });
+}
+
+// 5. Listen for the first click or touch anywhere on the page
+document.addEventListener('click', startGameAndMedia, { once: true });
+document.addEventListener('touchstart', startGameAndMedia, { once: true });
