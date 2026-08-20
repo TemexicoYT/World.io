@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>World.io</title>
+    <link rel="apple-touch-icon" href="IMG_4077.jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 10px;
+        }
+        img {
+            max-width: 50%;
+            height: auto;
+            border-radius: 10px;
+            border: 2px solid white;
+            margin-bottom: 15px;
+        }
+        canvas {
+            width: 100%;
+            max-width: 900px;
+            aspect-ratio: 1.85 / 1;
+            background-color: #222;
+            border: 2px solid white;
+            display: block;
+            margin: 10px auto;
+            cursor: pointer;
+        }
+        #overlay {
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #444;
+            display: inline-block;
+        }
+        /* Style for the video popup container */
+        #videoOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        #videoOverlay video {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>World.io</h1>
+    
+    <div id="overlay">
+        <p style="margin:0; font-size:14px;">🎵 Tap anywhere to start music & play video!</p>
+    </div>
+
+    <br>
+
+    <!-- 1. YOUR PICTURE -->
+    <img src="IMG_4077.jpeg" alt="World.io Image">
+
+    <br>
+
+    <!-- 2. GAME CANVAS -->
+    <canvas id="gameCanvas" width="800" height="432"></canvas>
+
+    <!-- 3. AUDIO ELEMENT -->
+    <audio id="bgMusic" loop>
+        <source src="aquaharp.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- 4. VIDEO POPUP ELEMENT -->
+    <div id="videoOverlay">
+        <video id="gameVideo" controls>
+            <source src="ScreenRecording_08-17-2026 13-43-19_1.mov" type="video/quicktime">
+            <!-- Fallback if mov isn't supported, or prompt user to use mp4 -->
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        let gameStarted = false;
+
+        function startGameAndMedia(e) {
+            if (gameStarted) return;
+            gameStarted = true;
+
+            // Hide the tap prompt overlay
+            const promptOverlay = document.getElementById('overlay');
+            if (promptOverlay) promptOverlay.style.display = 'none';
+
+            // Play Background Music
+            const music = document.getElementById('bgMusic');
+            music.play().catch(err => {
+                console.log("Audio play blocked or failed:", err);
+            });
+
+            // Show and Play Video Recording
+            const videoOverlay = document.getElementById('videoOverlay');
+            const gameVideo = document.getElementById('gameVideo');
+            
+            videoOverlay.style.display = 'flex';
+            gameVideo.play().catch(err => {
+                console.log("Video autoplay prevented:", err);
+            });
+
+            // When the video finishes playing, hide it so the game is ready
+            gameVideo.addEventListener('ended', () => {
+                videoOverlay.style.display = 'none';
+                // You can add your game loop initialization code here if needed!
+            });
+        }
+
+        // Listen for the first click or touch anywhere on the page
+        document.addEventListener('click', startGameAndMedia, { once: true });
+        document.addEventListener('touchstart', startGameAndMedia, { once: true });
+    </script>
+</body>
+</html>
