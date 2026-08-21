@@ -198,7 +198,7 @@
                 });
             };
 
-            // When Video 2 ends, check chance and show IMG_4459 or close overlay
+            // When Video 2 ends, check chance and show IMG_4460 or close overlay
             video2.onended = () => {
                 console.log("Video 2 ended.");
                 videoOverlay.style.display = 'none';
@@ -207,7 +207,7 @@
                 const roll = Math.floor(Math.random() * 1000) + 1;
                 
                 if (roll <= 999) {
-                    console.log("Rolled a " + roll + ". Showing IMG_4459 popup.");
+                    console.log("Rolled a " + roll + ". Showing IMG_4460 popup.");
                     const imagePopupOverlay = document.getElementById('imagePopupOverlay');
                     imagePopupOverlay.style.display = 'flex';
                 } else {
@@ -216,7 +216,7 @@
             };
         }
 
-        // Handle clicking the IMG_4459 popup overlay
+        // Handle clicking the IMG_4460 popup overlay
         document.getElementById('imagePopupOverlay').addEventListener('click', () => {
             alert("Game still in progress");
             document.getElementById('imagePopupOverlay').style.display = 'none';
