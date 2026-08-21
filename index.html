@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>World.io</title>
+    <link rel="apple-touch-icon" href="IMG_4077.jpeg">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* Force body to take up the entire screen with zero margins */
+        html, body {
+            background-color: #111;
+            color: white;
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Fullscreen Game Container */
+        #gameContainer {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            max-width: 185vh; /* Maintains your 1.85 aspect ratio */
+            max-height: 54.05vw;
+            background-color: #222;
+            border: 2px solid white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        /* Loading Screen covers 100% of the container */
+        #loadingScreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #222;
+            z-index: 10;
+        }
+
+        #loadingScreen img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Ensures the image fills the screen perfectly without distortion */
+            display: block;
+        }
+
+        /* Canvas covers 100% of the container identically */
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+            cursor: pointer;
+        }
+
+        /* Style for the video popup container */
+        #videoOverlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        #videoOverlay video {
+            max-width: 90%;
+            max-height: 90%;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SHARED CONTAINER -->
+    <div id="gameContainer">
+        
+        <!-- LOADING SCREEN -->
+        <div id="loadingScreen">
+            <img src="IMG_4077.jpeg" alt="World.io Loading Screen">
+        </div>
+
+        <!-- GAME CANVAS -->
+        <canvas id="gameCanvas" width="800" height="432"></canvas>
+    </div>
+
+    <!-- AUDIO ELEMENT -->
+    <audio id="bgMusic" loop>
+        <source src="aquaharp.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- VIDEO POPUP ELEMENT -->
+    <div id="videoOverlay">
+        <video id="gameVideo" controls>
+            <source src="ScreenRecording_08-17-2026 13-43-19_1.mov" type="video/quicktime">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <script>
+        let gameStarted = false;
+
+        function startGameAndMedia(e) {
+            if (gameStarted) return;
+            gameStarted = true;
+
+            // Hide the loading screen
+            const loadingScreen = document.getElementById('loadingScreen');
+            if (loadingScreen) loadingScreen.style.display = 'none';
+
+            // Play Background Music
+            const music = document.getElementById('bgMusic');
+            music.play().catch(err => {
+                console.log("Audio play blocked or failed:", err);
+            });
+
+            // Show and Play Video Recording
+            const videoOverlay = document.getElementById('videoOverlay');
+            const gameVideo = document.getElementById('gameVideo');
+            
+            videoOverlay.style.display = 'flex';
+            gameVideo.play().catch(err => {
+                console.log("Video autoplay prevented:", err);
+            });
+
+            // When the video finishes playing, hide it so the game is ready
+            gameVideo.addEventListener('ended', () => {
+                videoOverlay.style.display = 'none';
+            });
+        }
+
+        // Listen for the first click or touch anywhere on the page
+        document.addEventListener('click', startGameAndMedia, { once: true });
+        document.addEventListener('touchstart', startGameAndMedia, { once: true });
+    </script>
+</body>
+</html>
